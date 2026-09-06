@@ -184,7 +184,7 @@
         <div class="when">2026</div>
         <div class="project-body">
           <h3>BETA <span class="status">To be released</span></h3>
-          <p>A point-in-time environment that simulates a trader's terminal: an agent is placed at the close of a decision date, queries raw price and volume tools, and forecasts a return. The sandbox refuses any data after that date, so nothing leaks. Nine frontier models score at or below simple momentum rules; a 4B model post-trained on the benchmark places third, and it holds up after the frontier models' training cutoffs while they fall.</p>
+          <p>A point-in-time trading environment: an agent sits at the close of a decision date, queries raw price and volume tools that refuse any later data, and forecasts a return. Frontier models score at or below simple momentum rules, while a 4B model post-trained on the benchmark places third and holds up past their training cutoffs.</p>
         </div>
       </li>
 
@@ -192,7 +192,7 @@
         <div class="when">2026</div>
         <div class="project-body">
           <h3>Choruz</h3>
-          <p>An open-source, local-first collaboration platform where humans and AI agents work together in a Slack-like space. Real CLI agents (Claude Code, Codex and others) get their own workspaces, tasks and files, run across multiple devices, and talk to people and to each other through the same channels.</p>
+          <p>An open-source, local-first collaboration platform where humans and AI agents work together in a Slack-like space. CLI agents such as Claude Code and Codex get their own workspaces, tasks and files across multiple devices, and talk to people and to each other through the same channels.</p>
           <ul class="project-links">
             <li><a href="https://github.com/inclusionAI/Choruz">github.com/inclusionAI/Choruz</a></li>
             <li><a href="https://x.com/JiachengGu50887/status/2095656605752897708">thread</a></li>
@@ -204,7 +204,7 @@
         <div class="when">2026</div>
         <div class="project-body">
           <h3>AQuA</h3>
-          <p>Recursively self-improving quantitative research agents: two LLM-driven research loops, one for factor discovery and one for model development, that use evidence from their own past experiments to propose better ones.</p>
+          <p>Recursively self-improving quantitative research agents: one loop discovers factors, another develops trainable models, and both use evidence from their own past experiments to propose better ones.</p>
           <ul class="project-links">
             <li><a href="https://arxiv.org/pdf/2608.12841">arXiv</a></li>
             <li><a href="https://x.com/JiachengGu50887/status/2088336767267283069">thread</a></li>
@@ -213,10 +213,21 @@
       </li>
 
       <li class="project">
+        <div class="when">2026</div>
+        <div class="project-body">
+          <h3>PanelWise</h3>
+          <p>An open-source engine that sends the same task to a panel of frontier models and fuses their answers, with one topology for research questions and another for stateful work like coding. On the DRACO deep-research benchmark the frontier panel scores 73.7 against 68.3 for OpenRouter Fusion with the same models.</p>
+          <ul class="project-links">
+            <li><a href="https://github.com/inclusionAI/PanelWise">github.com/inclusionAI/PanelWise</a></li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="project">
         <div class="when">2025</div>
         <div class="project-body">
           <h3>GenEnv</h3>
-          <p>Difficulty-aligned co-evolution between an LLM agent and a generative environment simulator: the environment keeps producing tasks at the edge of what the agent can do, giving a 7B model gains of up to 40% with 3.3× less data than static augmentation.</p>
+          <p>Difficulty-aligned co-evolution between an LLM agent and a generative environment simulator that keeps producing tasks at the edge of what the agent can do. A 7B model gains up to 40% with 3.3× less data than static augmentation.</p>
           <ul class="project-links">
             <li><a href="https://arxiv.org/abs/2512.19682">arXiv</a></li>
           </ul>
@@ -227,7 +238,7 @@
         <div class="when">2025</div>
         <div class="project-body">
           <h3>CryptoBench</h3>
-          <p>An expert-curated, monthly-refreshed benchmark for LLM agents in cryptocurrency, where information is time-critical, adversarial and scattered across on-chain and DeFi sources. Fifty questions a month span retrieval and prediction. Leading models retrieve well but are markedly weaker when a question requires analysis.</p>
+          <p>An expert-curated, monthly-refreshed benchmark for LLM agents in cryptocurrency, where information is time-critical, adversarial and scattered across on-chain and DeFi sources. Leading models retrieve well but are markedly weaker once a question requires analysis.</p>
           <ul class="project-links">
             <li><a href="https://arxiv.org/pdf/2512.00417">arXiv</a></li>
             <li><a href="https://x.com/JiachengGu50887/status/1995945316542283845">thread</a></li>
@@ -239,7 +250,7 @@
         <div class="when">2025</div>
         <div class="project-body">
           <h3>Preference Variance</h3>
-          <p>Which prompts are worth training on? For DPO, the gradient a prompt can contribute is bounded by the variance of the reward model's preference over its response pairs. Selecting the top 10% of prompts by that variance beats training on the full UltraFeedback set on AlpacaEval 2.0 and Arena-Hard.</p>
+          <p>For DPO, the gradient a prompt can contribute is bounded by the variance of the reward model's preference over its response pairs. Training on the top 10% of prompts by that variance beats training on the full UltraFeedback set.</p>
           <ul class="project-links">
             <li><a href="https://arxiv.org/pdf/2510.13022">arXiv</a></li>
           </ul>
@@ -250,7 +261,7 @@
         <div class="when">2025</div>
         <div class="project-body">
           <h3>Temporal Consistency <span class="status">EMNLP 2025 Findings</span></h3>
-          <p>Test-time scaling for verifiers: an LLM checks a reasoning process step by step, then re-examines its own verdict over several rounds until it stops changing. On ProcessBench, distilled 7B and 8B models with this loop beat 70B models and GPT-4o, and a 14B model matches DeepSeek-R1.</p>
+          <p>Test-time scaling for verifiers: an LLM checks a reasoning process step by step, then re-examines its own verdict over several rounds until it stops changing. Distilled 7B and 8B models with this loop beat 70B models and GPT-4o on ProcessBench.</p>
           <ul class="project-links">
             <li><a href="https://aclanthology.org/anthology-files/pdf/findings/2025.findings-emnlp.1205.pdf">paper</a></li>
           </ul>
