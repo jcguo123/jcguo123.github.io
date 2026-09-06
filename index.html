@@ -116,7 +116,8 @@
     background: var(--tag); border-radius: 999px;
   }
   .projects { display: flex; flex-direction: column; gap: 2.4rem; list-style: none; margin: 0; padding: 0; }
-  .project { display: grid; grid-template-columns: 5.5rem 1fr; gap: 0.5rem 1.5rem; }
+  .project { display: grid; grid-template-columns: 9rem 1fr; gap: 0.5rem 1.5rem; }
+  .aside { display: flex; flex-direction: column; gap: 0.6rem; }
   .when {
     font-family: "IBM Plex Mono", ui-monospace, monospace;
     font-size: 0.8rem; color: var(--muted);
@@ -140,18 +141,47 @@
     font-family: "IBM Plex Mono", ui-monospace, monospace;
     font-size: 0.8rem;
   }
-  .project video, .project img {
-    display: block; max-width: 100%; max-height: 420px;
-    margin-top: 0.4rem;
-    border: 1px solid var(--rule); border-radius: 6px;
-    background: #000;
+  .thumb {
+    display: block; width: 100%; padding: 0; margin: 0;
+    border: 1px solid var(--rule); border-radius: 4px;
+    background: var(--tag); cursor: zoom-in; overflow: hidden;
+    aspect-ratio: 4 / 3;
+    transition: border-color 120ms ease;
   }
-  .project img { background: #fff; }
+  .thumb:hover, .thumb:focus-visible { border-color: var(--accent); }
+  .thumb:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .thumb img {
+    display: block; width: 100%; height: 100%; object-fit: contain; pointer-events: none;
+  }
+  .thumb.is-video img { object-fit: cover; }
+  .thumb.is-video { background: #000; }
+  dialog.lightbox {
+    border: 0; padding: 0; margin: auto;
+    max-width: min(96vw, 1200px); max-height: 92vh;
+    background: transparent; overflow: visible;
+  }
+  dialog.lightbox::backdrop { background: rgba(10, 10, 8, 0.82); }
+  dialog.lightbox img, dialog.lightbox video {
+    display: block; max-width: min(96vw, 1200px); max-height: 88vh;
+    border-radius: 6px; background: #fff;
+  }
+  dialog.lightbox video { background: #000; }
+  dialog.lightbox p {
+    color: #e9e6df; font-size: 0.85rem; text-align: center; margin: 0.6rem 0 0; max-width: none;
+  }
+  .lightbox-close {
+    position: absolute; top: -0.25rem; right: 0; transform: translateY(-100%);
+    background: none; border: 0; color: #e9e6df; font: inherit; font-size: 0.85rem;
+    cursor: pointer; padding: 0.25rem 0;
+  }
+  .lightbox-close:focus-visible { outline: 2px solid #e88a3a; }
   footer { color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--rule); padding-top: 1.25rem; }
   @media (max-width: 560px) {
     main { padding-top: 3rem; }
     h1 { font-size: 2rem; }
-    .project { grid-template-columns: 1fr; gap: 0.2rem; }
+    .project { grid-template-columns: 1fr; gap: 0.6rem; }
+    .aside { flex-direction: row; align-items: center; gap: 1rem; }
+    .thumb { width: 7.5rem; flex: none; }
     .when { padding-top: 0; }
   }
   @media (prefers-reduced-motion: reduce) { a { transition: none; } }
@@ -188,20 +218,28 @@
     <ul class="projects">
 
       <li class="project">
-        <div class="when">2026</div>
+        <div class="aside">
+          <div class="when">2026</div>
+          <button class="thumb" type="button" data-src="media/beta.png" data-kind="image" data-caption="The BETA Arena: chart pane, data rail and tool-call console" aria-label="Enlarge figure: The BETA Arena">
+            <img src="media/beta.png" alt="" loading="lazy">
+          </button>
+        </div>
         <div class="project-body">
           <h3>BETA <span class="status">To be released</span></h3>
           <p>A point-in-time trading environment: an agent sits at the close of a decision date, queries raw price and volume tools that refuse any later data, and forecasts a return. Frontier models score at or below simple momentum rules, while a 4B model post-trained on the benchmark places third and holds up past their training cutoffs.</p>
-          <img src="media/beta.png" alt="BETA task formulation" loading="lazy">
         </div>
       </li>
 
       <li class="project">
-        <div class="when">2026</div>
+        <div class="aside">
+          <div class="when">2026</div>
+          <button class="thumb is-video" type="button" data-src="media/choruz.mp4" data-poster="media/choruz-poster.jpg" data-kind="video" data-caption="Demo video" aria-label="Play demo video">
+            <img src="media/choruz-poster.jpg" alt="" loading="lazy">
+          </button>
+        </div>
         <div class="project-body">
           <h3>Choruz</h3>
           <p>An open-source, local-first collaboration platform where humans and AI agents work together in a Slack-like space. CLI agents such as Claude Code and Codex get their own workspaces, tasks and files across multiple devices, and talk to people and to each other through the same channels.</p>
-          <video src="media/choruz.mp4" width="654" height="368" controls preload="metadata" playsinline></video>
           <ul class="project-links">
             <li><a href="https://github.com/inclusionAI/Choruz">github.com/inclusionAI/Choruz</a></li>
             <li><a href="https://x.com/JiachengGu50887/status/2095656605752897708">thread</a></li>
@@ -210,11 +248,15 @@
       </li>
 
       <li class="project">
-        <div class="when">2026</div>
+        <div class="aside">
+          <div class="when">2026</div>
+          <button class="thumb is-video" type="button" data-src="media/aqua.mp4" data-poster="media/aqua-poster.jpg" data-kind="video" data-caption="Demo video" aria-label="Play demo video">
+            <img src="media/aqua-poster.jpg" alt="" loading="lazy">
+          </button>
+        </div>
         <div class="project-body">
           <h3>AQuA</h3>
           <p>Recursively self-improving quantitative research agents: one loop discovers factors, another develops trainable models, and both use evidence from their own past experiments to propose better ones.</p>
-          <video src="media/aqua.mp4" width="368" height="640" controls preload="metadata" playsinline></video>
           <ul class="project-links">
             <li><a href="https://arxiv.org/pdf/2608.12841">arXiv</a></li>
             <li><a href="https://x.com/JiachengGu50887/status/2088336767267283069">thread</a></li>
@@ -223,11 +265,15 @@
       </li>
 
       <li class="project">
-        <div class="when">2026</div>
+        <div class="aside">
+          <div class="when">2026</div>
+          <button class="thumb" type="button" data-src="media/panelwise.png" data-kind="image" data-caption="Three model perspectives fused into one answer" aria-label="Enlarge figure: Three model perspectives fused into one answer">
+            <img src="media/panelwise.png" alt="" loading="lazy">
+          </button>
+        </div>
         <div class="project-body">
           <h3>PanelWise</h3>
-          <p>An open-source engine that sends the same task to a panel of frontier models and fuses their answers, with one topology for research questions and another for stateful work like coding. On the DRACO deep-research benchmark the frontier panel scores 73.7 against 68.3 for OpenRouter Fusion with the same models.</p>
-          <img src="media/panelwise.png" alt="Three model perspectives fused into one answer" loading="lazy">
+          <p>An open-source engine that sends the same task to a panel of frontier models and fuses their answers, with one topology for research questions and another for stateful work like coding.</p>
           <ul class="project-links">
             <li><a href="https://github.com/inclusionAI/PanelWise">github.com/inclusionAI/PanelWise</a></li>
           </ul>
@@ -235,11 +281,15 @@
       </li>
 
       <li class="project">
-        <div class="when">2025</div>
+        <div class="aside">
+          <div class="when">2025</div>
+          <button class="thumb" type="button" data-src="media/genenv.png" data-kind="image" data-caption="GenEnv training loop" aria-label="Enlarge figure: GenEnv training loop">
+            <img src="media/genenv.png" alt="" loading="lazy">
+          </button>
+        </div>
         <div class="project-body">
           <h3>GenEnv</h3>
-          <p>Difficulty-aligned co-evolution between an LLM agent and a generative environment simulator that keeps producing tasks at the edge of what the agent can do. A 7B model gains up to 40% with 3.3× less data than static augmentation.</p>
-          <img src="media/genenv.png" alt="GenEnv results against baselines" loading="lazy">
+          <p>Difficulty-aligned co-evolution between an LLM agent and a generative environment simulator that keeps producing tasks at the edge of what the agent can do.</p>
           <ul class="project-links">
             <li><a href="https://arxiv.org/abs/2512.19682">arXiv</a></li>
           </ul>
@@ -247,11 +297,15 @@
       </li>
 
       <li class="project">
-        <div class="when">2025</div>
+        <div class="aside">
+          <div class="when">2025</div>
+          <button class="thumb" type="button" data-src="media/cryptobench.png" data-kind="image" data-caption="CryptoBench task structure" aria-label="Enlarge figure: CryptoBench task structure">
+            <img src="media/cryptobench.png" alt="" loading="lazy">
+          </button>
+        </div>
         <div class="project-body">
           <h3>CryptoBench</h3>
-          <p>An expert-curated, monthly-refreshed benchmark for LLM agents in cryptocurrency, where information is time-critical, adversarial and scattered across on-chain and DeFi sources. Leading models retrieve well but are markedly weaker once a question requires analysis.</p>
-          <img src="media/cryptobench.png" alt="CryptoBench task structure" loading="lazy">
+          <p>An expert-curated, monthly-refreshed benchmark for LLM agents in cryptocurrency, where information is time-critical, adversarial and scattered across on-chain and DeFi sources.</p>
           <ul class="project-links">
             <li><a href="https://arxiv.org/pdf/2512.00417">arXiv</a></li>
             <li><a href="https://x.com/JiachengGu50887/status/1995945316542283845">thread</a></li>
@@ -260,11 +314,15 @@
       </li>
 
       <li class="project">
-        <div class="when">2025</div>
+        <div class="aside">
+          <div class="when">2025</div>
+          <button class="thumb" type="button" data-src="media/prefvar.png" data-kind="image" data-caption="Low versus high preference variance prompts" aria-label="Enlarge figure: Low versus high preference variance prompts">
+            <img src="media/prefvar.png" alt="" loading="lazy">
+          </button>
+        </div>
         <div class="project-body">
           <h3>Preference Variance</h3>
-          <p>For DPO, the gradient a prompt can contribute is bounded by the variance of the reward model's preference over its response pairs. Training on the top 10% of prompts by that variance beats training on the full UltraFeedback set.</p>
-          <img src="media/prefvar.png" alt="Low versus high preference variance prompts" loading="lazy">
+          <p>For DPO, the gradient a prompt can contribute is bounded by the variance of the reward model's preference over its response pairs.</p>
           <ul class="project-links">
             <li><a href="https://arxiv.org/pdf/2510.13022">arXiv</a></li>
           </ul>
@@ -272,11 +330,15 @@
       </li>
 
       <li class="project">
-        <div class="when">2025</div>
+        <div class="aside">
+          <div class="when">2025</div>
+          <button class="thumb" type="button" data-src="media/temporal.png" data-kind="image" data-caption="Cost versus F1 across methods and models" aria-label="Enlarge figure: Cost versus F1 across methods and models">
+            <img src="media/temporal.png" alt="" loading="lazy">
+          </button>
+        </div>
         <div class="project-body">
           <h3>Temporal Consistency</h3>
-          <p>Test-time scaling for verifiers: an LLM checks a reasoning process step by step, then re-examines its own verdict over several rounds until it stops changing. Distilled 7B and 8B models with this loop beat 70B models and GPT-4o on ProcessBench.</p>
-          <img src="media/temporal.png" alt="F1 gains from temporal consistency on three benchmarks" loading="lazy">
+          <p>Test-time scaling for verifiers: an LLM checks a reasoning process step by step, then re-examines its own verdict over several rounds until it stops changing.</p>
           <ul class="project-links">
             <li><a href="https://aclanthology.org/anthology-files/pdf/findings/2025.findings-emnlp.1205.pdf">paper</a></li>
           </ul>
@@ -288,5 +350,39 @@
 
   <footer>Jiacheng Guo · Princeton, NJ</footer>
 </main>
+<dialog class="lightbox" id="lightbox" aria-label="Enlarged media">
+  <button class="lightbox-close" type="button" id="lightbox-close">Close ×</button>
+  <div id="lightbox-body"></div>
+  <p id="lightbox-caption"></p>
+</dialog>
+<script>
+  (function () {
+    var dlg = document.getElementById("lightbox");
+    var body = document.getElementById("lightbox-body");
+    var cap = document.getElementById("lightbox-caption");
+    if (!dlg || typeof dlg.showModal !== "function") return;
+    function close() { dlg.close(); }
+    function open(btn) {
+      body.innerHTML = "";
+      var el;
+      if (btn.dataset.kind === "video") {
+        el = document.createElement("video");
+        el.src = btn.dataset.src; el.controls = true; el.autoplay = true; el.playsInline = true; el.poster = btn.dataset.poster || "";
+      } else {
+        el = document.createElement("img");
+        el.src = btn.dataset.src; el.alt = btn.dataset.caption || "";
+      }
+      body.appendChild(el);
+      cap.textContent = btn.dataset.caption || "";
+      dlg.showModal();
+    }
+    document.querySelectorAll(".thumb").forEach(function (b) {
+      b.addEventListener("click", function () { open(b); });
+    });
+    document.getElementById("lightbox-close").addEventListener("click", close);
+    dlg.addEventListener("click", function (e) { if (e.target === dlg) close(); });
+    dlg.addEventListener("close", function () { body.innerHTML = ""; });
+  })();
+</script>
 </body>
 </html>
