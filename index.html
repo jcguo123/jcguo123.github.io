@@ -87,7 +87,18 @@
   }
   h3 { font-size: 1.35rem; line-height: 1.25; }
   p { margin: 0; max-width: 62ch; }
-  header { display: flex; flex-direction: column; gap: 0.9rem; }
+  header { display: grid; grid-template-columns: 1fr auto; gap: 0.9rem 2rem; align-items: start; }
+  header > :not(.avatar) { grid-column: 1; }
+  .avatar {
+    grid-column: 2; grid-row: 1 / span 3;
+    width: 112px; height: 112px; border-radius: 50%;
+    object-fit: cover; display: block;
+    border: 1px solid var(--rule);
+  }
+  @media (max-width: 560px) {
+    header { grid-template-columns: 1fr; }
+    .avatar { grid-column: 1; grid-row: auto; width: 88px; height: 88px; }
+  }
   .role { color: var(--muted); }
   .links {
     display: flex; flex-wrap: wrap; gap: 0.35rem 1.4rem;
@@ -142,6 +153,7 @@
 <body>
 <main>
   <header>
+    <img class="avatar" src="avatar.jpg" alt="Jiacheng Guo" width="112" height="112">
     <h1>Jiacheng Guo</h1>
     <p class="role">PhD student, Electrical and Computer Engineering, Princeton University. Advised by <a href="https://mwang.princeton.edu/">Mengdi Wang</a>.</p>
     <ul class="links">
