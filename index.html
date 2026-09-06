@@ -140,12 +140,13 @@
     font-family: "IBM Plex Mono", ui-monospace, monospace;
     font-size: 0.8rem;
   }
-  .project video {
+  .project video, .project img {
     display: block; max-width: 100%; max-height: 420px;
     margin-top: 0.4rem;
     border: 1px solid var(--rule); border-radius: 6px;
     background: #000;
   }
+  .project img { background: #fff; }
   footer { color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--rule); padding-top: 1.25rem; }
   @media (max-width: 560px) {
     main { padding-top: 3rem; }
@@ -191,6 +192,7 @@
         <div class="project-body">
           <h3>BETA <span class="status">To be released</span></h3>
           <p>A point-in-time trading environment: an agent sits at the close of a decision date, queries raw price and volume tools that refuse any later data, and forecasts a return. Frontier models score at or below simple momentum rules, while a 4B model post-trained on the benchmark places third and holds up past their training cutoffs.</p>
+          <img src="media/beta.png" alt="BETA task formulation" loading="lazy">
         </div>
       </li>
 
@@ -225,6 +227,7 @@
         <div class="project-body">
           <h3>PanelWise</h3>
           <p>An open-source engine that sends the same task to a panel of frontier models and fuses their answers, with one topology for research questions and another for stateful work like coding. On the DRACO deep-research benchmark the frontier panel scores 73.7 against 68.3 for OpenRouter Fusion with the same models.</p>
+          <img src="media/panelwise.png" alt="Three model perspectives fused into one answer" loading="lazy">
           <ul class="project-links">
             <li><a href="https://github.com/inclusionAI/PanelWise">github.com/inclusionAI/PanelWise</a></li>
           </ul>
@@ -236,6 +239,7 @@
         <div class="project-body">
           <h3>GenEnv</h3>
           <p>Difficulty-aligned co-evolution between an LLM agent and a generative environment simulator that keeps producing tasks at the edge of what the agent can do. A 7B model gains up to 40% with 3.3× less data than static augmentation.</p>
+          <img src="media/genenv.png" alt="GenEnv results against baselines" loading="lazy">
           <ul class="project-links">
             <li><a href="https://arxiv.org/abs/2512.19682">arXiv</a></li>
           </ul>
@@ -247,6 +251,7 @@
         <div class="project-body">
           <h3>CryptoBench</h3>
           <p>An expert-curated, monthly-refreshed benchmark for LLM agents in cryptocurrency, where information is time-critical, adversarial and scattered across on-chain and DeFi sources. Leading models retrieve well but are markedly weaker once a question requires analysis.</p>
+          <img src="media/cryptobench.png" alt="CryptoBench task structure" loading="lazy">
           <ul class="project-links">
             <li><a href="https://arxiv.org/pdf/2512.00417">arXiv</a></li>
             <li><a href="https://x.com/JiachengGu50887/status/1995945316542283845">thread</a></li>
@@ -259,6 +264,7 @@
         <div class="project-body">
           <h3>Preference Variance</h3>
           <p>For DPO, the gradient a prompt can contribute is bounded by the variance of the reward model's preference over its response pairs. Training on the top 10% of prompts by that variance beats training on the full UltraFeedback set.</p>
+          <img src="media/prefvar.png" alt="Low versus high preference variance prompts" loading="lazy">
           <ul class="project-links">
             <li><a href="https://arxiv.org/pdf/2510.13022">arXiv</a></li>
           </ul>
@@ -268,8 +274,9 @@
       <li class="project">
         <div class="when">2025</div>
         <div class="project-body">
-          <h3>Temporal Consistency <span class="status">EMNLP 2025 Findings</span></h3>
+          <h3>Temporal Consistency</h3>
           <p>Test-time scaling for verifiers: an LLM checks a reasoning process step by step, then re-examines its own verdict over several rounds until it stops changing. Distilled 7B and 8B models with this loop beat 70B models and GPT-4o on ProcessBench.</p>
+          <img src="media/temporal.png" alt="F1 gains from temporal consistency on three benchmarks" loading="lazy">
           <ul class="project-links">
             <li><a href="https://aclanthology.org/anthology-files/pdf/findings/2025.findings-emnlp.1205.pdf">paper</a></li>
           </ul>
