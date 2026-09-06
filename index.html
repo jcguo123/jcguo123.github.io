@@ -140,6 +140,12 @@
     font-family: "IBM Plex Mono", ui-monospace, monospace;
     font-size: 0.8rem;
   }
+  .project video {
+    display: block; max-width: 100%; max-height: 420px;
+    margin-top: 0.4rem;
+    border: 1px solid var(--rule); border-radius: 6px;
+    background: #000;
+  }
   footer { color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--rule); padding-top: 1.25rem; }
   @media (max-width: 560px) {
     main { padding-top: 3rem; }
@@ -193,6 +199,7 @@
         <div class="project-body">
           <h3>Choruz</h3>
           <p>An open-source, local-first collaboration platform where humans and AI agents work together in a Slack-like space. CLI agents such as Claude Code and Codex get their own workspaces, tasks and files across multiple devices, and talk to people and to each other through the same channels.</p>
+          <video src="media/choruz.mp4" width="654" height="368" controls preload="metadata" playsinline></video>
           <ul class="project-links">
             <li><a href="https://github.com/inclusionAI/Choruz">github.com/inclusionAI/Choruz</a></li>
             <li><a href="https://x.com/JiachengGu50887/status/2095656605752897708">thread</a></li>
@@ -205,6 +212,7 @@
         <div class="project-body">
           <h3>AQuA</h3>
           <p>Recursively self-improving quantitative research agents: one loop discovers factors, another develops trainable models, and both use evidence from their own past experiments to propose better ones.</p>
+          <video src="media/aqua.mp4" width="368" height="640" controls preload="metadata" playsinline></video>
           <ul class="project-links">
             <li><a href="https://arxiv.org/pdf/2608.12841">arXiv</a></li>
             <li><a href="https://x.com/JiachengGu50887/status/2088336767267283069">thread</a></li>
