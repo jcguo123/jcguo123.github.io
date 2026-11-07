@@ -152,6 +152,8 @@
   .edu { display: flex; flex-direction: column; gap: .9rem; }
   .edu h4 { font-size: 1.1rem; }
   .edu p { color: var(--muted); font-size: 1rem; }
+  .visitor-map { max-width: 22rem; border-radius: 10px; overflow: hidden; border: 1px solid var(--rule); background: #fff; line-height: 0; }
+  .visitor-map img, .visitor-map canvas, .visitor-map iframe { max-width: 100%; height: auto; }
   footer { margin-top: 5rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); color: var(--muted); font-size: .95rem; display: flex; justify-content: space-between; }
   footer a { text-decoration: none; }
 
@@ -225,6 +227,11 @@
         <div class="reveal"><h4>Princeton University</h4><p>Ph.D., Electrical and Computer Engineering · 2023–present</p></div>
         <div class="reveal"><h4>Fudan University</h4><p>B.S., Mathematics · 2019–2023</p></div>
       </div>
+    </section>
+
+    <section class="sec" id="visitors">
+      <div class="sec-head"><h2>Visitors</h2></div>
+      <div class="visitor-map"><script type="text/javascript" id="mapmyvisitors" src="https://mapmyvisitors.com/map.js?d=BXGGzQCZ7yeoQyZmBpfZ3k4OXxSqA5gnlunLzmtCsGc&cl=ffffff&w=a"></script></div>
     </section>
 
     <footer><span>Jiacheng Guo · Princeton, NJ</span><a href="#">Back to top ↑</a></footer>
