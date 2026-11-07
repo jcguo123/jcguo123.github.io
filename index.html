@@ -7,216 +7,140 @@
 <meta name="description" content="Jiacheng Guo, PhD student at Princeton University working on reinforcement learning, self-improving LLM agents, AI for science and finance, post-training, alignment, test-time scaling and benchmarking.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap">
 <script>
   try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
 </script>
 <style>
   :root {
-    --bg: #faf8f5;
-    --surface: #ffffff;
-    --ink: #17161a;
-    --muted: #6b6870;
-    --rule: #e6e2dc;
-    --accent: #e77500;
-    --accent-ink: #b85d00;
-    --accent-soft: rgba(231, 117, 0, 0.12);
-    --glow: rgba(231, 117, 0, 0.16);
-    --shadow: 0 1px 2px rgba(20, 18, 15, 0.04), 0 8px 24px rgba(20, 18, 15, 0.06);
+    --bg: #fdfcfa; --ink: #1a1a1a; --text: #3d3d3d; --muted: #7a7672; --rule: #ebe7e1;
+    --accent: #c4610a; --accent-soft: rgba(196, 97, 10, 0.10);
     color-scheme: light;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --bg: #0e0e10; --surface: #17171a; --ink: #ecebe8; --muted: #9b98a0; --rule: #26252a;
-      --accent: #ff9a3c; --accent-ink: #ffb46e; --accent-soft: rgba(255, 154, 60, 0.14); --glow: rgba(255, 154, 60, 0.10);
-      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35); color-scheme: dark;
+      --bg: #121212; --ink: #efece6; --text: #cfcbc4; --muted: #8f8a83; --rule: #2a2826;
+      --accent: #f0923a; --accent-soft: rgba(240, 146, 58, 0.14); color-scheme: dark;
     }
   }
   :root[data-theme="dark"] {
-    --bg: #0e0e10; --surface: #17171a; --ink: #ecebe8; --muted: #9b98a0; --rule: #26252a;
-    --accent: #ff9a3c; --accent-ink: #ffb46e; --accent-soft: rgba(255, 154, 60, 0.14); --glow: rgba(255, 154, 60, 0.10);
-    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35); color-scheme: dark;
+    --bg: #121212; --ink: #efece6; --text: #cfcbc4; --muted: #8f8a83; --rule: #2a2826;
+    --accent: #f0923a; --accent-soft: rgba(240, 146, 58, 0.14); color-scheme: dark;
   }
   * { box-sizing: border-box; }
   html { background: var(--bg); scroll-behavior: smooth; }
   body {
-    margin: 0; background: var(--bg); color: var(--ink);
-    font-family: "Inter", "Helvetica Neue", Arial, sans-serif; font-size: 16px; line-height: 1.6;
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: "Crimson Pro", Georgia, Cambria, serif; font-size: 18px; line-height: 1.65;
     -webkit-font-smoothing: antialiased;
-    background-image: radial-gradient(60rem 28rem at 85% -8rem, var(--glow), transparent 70%);
-    background-repeat: no-repeat;
   }
-  body::after { /* faint grain */
-    content: ""; position: fixed; inset: 0; pointer-events: none; opacity: .035; z-index: 50;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-  a { color: inherit; text-decoration-color: var(--accent); text-underline-offset: .2em; text-decoration-thickness: 1px; }
-  a:hover { color: var(--accent-ink); }
-  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
-  main { max-width: 68rem; margin: 0 auto; padding: 0 2rem 5rem; }
-  .serif { font-family: "Instrument Serif", Georgia, serif; font-weight: 400; }
-  h1, h2, h3, h4 { margin: 0; font-weight: 400; text-wrap: balance; }
+  a { color: inherit; text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: .2em; text-decoration-thickness: 1px; transition: text-decoration-color .15s, color .15s; }
+  a:hover { text-decoration-color: var(--accent); color: var(--ink); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+  h1, h2, h3, h4 { margin: 0; color: var(--ink); text-wrap: balance; }
+  h1, h2, h3, .serif { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 600; }
   p { margin: 0; }
+  main { max-width: 46rem; margin: 0 auto; padding: 0 1.5rem 6rem; }
 
-  /* top bar */
-  .bar { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; font-size: .9rem; }
-  .bar nav { display: flex; gap: 1.5rem; }
+  .bar { display: flex; justify-content: center; align-items: center; gap: 2rem; padding: 1.75rem 0; font-size: 1rem; position: relative; }
+  .bar > .serif { display: none; }
+  .bar nav { display: flex; gap: 2rem; }
   .bar nav a { text-decoration: none; color: var(--muted); }
   .bar nav a:hover { color: var(--ink); }
-  .theme-btn {
-    border: 1px solid var(--rule); background: var(--surface); color: var(--ink);
-    width: 2.2rem; height: 2.2rem; border-radius: 50%; cursor: pointer; font-size: 1rem; line-height: 1;
-  }
+  .theme-btn { position: absolute; right: 0; border: 0; background: none; color: var(--muted); font-size: 1.1rem; cursor: pointer; padding: .3rem; }
+  .theme-btn:hover { color: var(--ink); }
 
-  /* hero */
-  .hero { display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: center; padding: 4.5rem 0 3.5rem; }
-  .eyebrow { font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-ink); font-weight: 600; margin-bottom: 1.1rem; }
-  h1 { font-family: "Instrument Serif", Georgia, serif; font-size: clamp(3.4rem, 9vw, 6.6rem); line-height: .95; letter-spacing: -.02em; }
-  h1 em { color: var(--accent); }
-  .lede { font-size: 1.2rem; line-height: 1.55; color: var(--muted); max-width: 40rem; margin-top: 1.6rem; }
-  .lede strong { color: var(--ink); font-weight: 500; }
-  .social { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 2rem; padding: 0; list-style: none; }
-  .social a {
-    display: inline-flex; align-items: center; gap: .45rem; text-decoration: none;
-    padding: .45rem .9rem; border: 1px solid var(--rule); border-radius: 999px; background: var(--surface);
-    font-size: .88rem; font-weight: 500; transition: border-color .15s, transform .15s;
-  }
-  .social a:hover { border-color: var(--accent); color: var(--ink); transform: translateY(-1px); }
-  .social svg { width: 1rem; height: 1rem; fill: currentColor; }
-  .portrait { position: relative; width: 15rem; height: 15rem; }
-  .portrait::before {
-    content: ""; position: absolute; inset: -10px; border-radius: 50%;
-    background: conic-gradient(from 140deg, var(--accent), transparent 40%, var(--accent) 75%, transparent);
-    opacity: .5; animation: spin 18s linear infinite;
-  }
-  .portrait img { position: relative; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 6px solid var(--bg); background: #fff; }
-  @keyframes spin { to { transform: rotate(1turn); } }
+  .hero { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 3.5rem 0 1rem; }
+  .portrait { width: 9.5rem; height: 9.5rem; margin-bottom: 2rem; }
+  .portrait img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; background: #fff; border: 1px solid var(--rule); }
+  .eyebrow { font-size: 1.05rem; color: var(--muted); margin-top: .35rem; }
+  h1 { font-size: 2.6rem; line-height: 1.15; }
+  h1 em { font-style: normal; }
+  .lede { margin: 1.5rem auto 0; max-width: 38rem; font-size: 1.15rem; }
+  .lede strong { font-weight: 400; color: var(--ink); }
+  .social { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem 1.6rem; margin: 1.75rem 0 0; padding: 0; list-style: none; font-size: 1rem; }
+  .social a { display: inline-flex; align-items: center; gap: .4rem; text-decoration: none; color: var(--muted); }
+  .social a:hover { color: var(--ink); }
+  .social svg { width: .95rem; height: .95rem; fill: currentColor; }
 
-  /* section heads */
   .sec { padding-top: 4.5rem; }
-  .sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; border-bottom: 1px solid var(--rule); padding-bottom: 1rem; margin-bottom: 2rem; }
-  h2 { font-family: "Instrument Serif", Georgia, serif; font-size: clamp(2.2rem, 4.5vw, 3rem); line-height: 1; }
-  .sec-head p { color: var(--muted); font-size: .9rem; }
+  .sec-head { margin-bottom: 1.5rem; }
+  h2 { font-size: 1.85rem; line-height: 1.2; }
+  .sec-head p { color: var(--muted); font-size: 1rem; margin-top: .2rem; }
 
-  /* interests */
-  .chips { display: flex; flex-wrap: wrap; gap: .2rem 2rem; }
+  .chips { display: flex; flex-wrap: wrap; gap: .5rem; }
   .chip {
-    font-family: "Instrument Serif", Georgia, serif; font-size: 1.65rem; line-height: 1.35;
-    cursor: pointer; color: var(--muted); background: none; border: 0; padding: 0;
-    text-decoration: underline; text-decoration-color: transparent; text-decoration-thickness: 1px; text-underline-offset: .18em;
-    transition: color .15s, text-decoration-color .15s;
+    font: inherit; font-size: 1rem; line-height: 1.3; cursor: pointer; color: var(--text);
+    background: none; border: 1px solid var(--rule); border-radius: 999px; padding: .3rem .85rem;
+    transition: border-color .15s, color .15s, background .15s;
   }
-  .chip sup {
-    font-family: "Inter", sans-serif; font-size: .7rem; font-weight: 500; margin-left: .2rem;
-    color: var(--accent-ink); vertical-align: super; line-height: 0;
-  }
-  .chip:hover { color: var(--ink); text-decoration-color: var(--rule); }
-  .chip.is-on { color: var(--ink); font-style: italic; text-decoration-color: var(--accent); }
-  .filter-note { margin-top: 1rem; color: var(--muted); font-size: .85rem; min-height: 1.4em; }
+  .chip sup { font-size: .72em; color: var(--muted); margin-left: .25rem; vertical-align: baseline; }
+  .chip:hover { border-color: var(--accent); }
+  .chip.is-on { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+  .chip.is-on sup { color: inherit; opacity: .7; }
+  .filter-note { margin-top: .75rem; color: var(--muted); font-size: .95rem; font-style: italic; min-height: 1.5em; }
 
-  /* groups */
-  .group { margin-top: 3.5rem; }
-  .group[hidden] { display: none; }
-  .group-head { display: grid; grid-template-columns: 4rem 1fr; gap: 1rem; margin-bottom: 1.25rem; align-items: baseline; }
-  .num { font-family: "Instrument Serif", Georgia, serif; font-size: 2rem; color: var(--accent); line-height: 1; }
-  .group-head h3 { font-family: "Instrument Serif", Georgia, serif; font-size: 1.9rem; line-height: 1.1; }
-  .group-head p { color: var(--muted); margin-top: .35rem; max-width: 46rem; }
-  .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; margin-left: 5rem; }
-  .card {
-    display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--rule);
-    border-radius: 14px; overflow: hidden; box-shadow: var(--shadow);
-    transition: transform .2s ease, border-color .2s ease;
-  }
-  .card:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--accent) 45%, var(--rule)); }
-  .card[hidden] { display: none; }
-  .media {
-    display: block; width: 100%; aspect-ratio: 16 / 9; padding: 0; border: 0; border-bottom: 1px solid var(--rule);
-    background: #fff; cursor: zoom-in; overflow: hidden; position: relative;
-  }
-  .media img, .media video { width: 100%; height: 100%; object-fit: contain; display: block; transition: transform .4s ease; padding: .6rem; }
-  .media.is-text {
-    cursor: default; display: grid; place-items: center; text-align: center;
-    background: radial-gradient(120% 90% at 20% 10%, var(--accent-soft), transparent 60%), linear-gradient(135deg, var(--surface), var(--bg));
-  }
-  .media.is-text span { font-family: "Instrument Serif", Georgia, serif; font-style: italic; font-size: 2.6rem; line-height: 1; color: var(--accent-ink); }
-  .media.is-video { background: #0b0b0d; cursor: pointer; }
-  .media.is-video video { padding: 0; }
-  .card:hover .media img { transform: scale(1.03); }
-  .play {
-    position: absolute; right: .75rem; bottom: .75rem; width: 2.2rem; height: 2.2rem; border-radius: 50%;
-    display: grid; place-items: center; font-size: .8rem; background: rgba(255,255,255,.9); color: #111; transition: opacity .2s;
-  }
-  .card:hover .play { opacity: 0; }
-  .card-body { padding: 1.3rem 1.4rem 1.4rem; display: flex; flex-direction: column; gap: .6rem; flex: 1; }
-  .venue {
-    align-self: flex-start; font-size: .72rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
-    color: var(--accent-ink); background: var(--accent-soft); padding: .2rem .55rem; border-radius: 6px; white-space: nowrap;
-  }
-  .venue.is-pre { color: var(--muted); background: transparent; border: 1px solid var(--rule); }
-  h4 { font-family: "Instrument Serif", Georgia, serif; font-size: 1.5rem; line-height: 1.15; }
-  .authors { font-size: .86rem; color: var(--muted); }
+  .group { margin-top: 2.75rem; }
+  .group[hidden], .card[hidden], .pub[hidden], #pubs[hidden] { display: none; }
+  .group-head { margin-bottom: .5rem; }
+  .num { display: none; }
+  .group-head h3 { font-size: 1.4rem; color: var(--ink); }
+  .cards { display: flex; flex-direction: column; }
+  .card { padding: 1.35rem 0; border-bottom: 1px solid var(--rule); }
+  .card:last-child { border-bottom: 0; }
+  .card-body { display: flex; flex-direction: column; gap: .3rem; }
+  .card-body > .venue { order: 3; }
+  .card-body > h4 { order: 1; }
+  .card-body > .authors { order: 2; }
+  .card-body > .desc { order: 4; }
+  .card-body > .tags { order: 6; }
+  .card-body > .links { order: 5; }
+  h4 { font-family: "Crimson Pro", Georgia, serif; font-size: 1.15rem; font-weight: 600; line-height: 1.35; }
+  .venue { font-size: .95rem; font-style: italic; color: var(--accent); }
+  .venue.is-pre { color: var(--muted); }
+  .authors { font-size: .95rem; color: var(--muted); }
   .authors b { color: var(--ink); font-weight: 600; }
-  .desc { font-size: .95rem; flex: 1; }
-  .tags { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: auto; padding-top: .4rem; }
-  .pub .tags { padding-top: .35rem; }
-  .tag:hover { color: var(--accent-ink); border-color: var(--accent); }
-  .tag { cursor: pointer; font-size: .72rem; color: var(--muted); border: 1px solid var(--rule); border-radius: 999px; padding: .1rem .55rem; }
-  .links { display: flex; gap: .5rem; flex-wrap: wrap; }
-  .btn {
-    font-size: .82rem; font-weight: 500; text-decoration: none; padding: .3rem .8rem; border-radius: 8px;
-    background: var(--bg); border: 1px solid var(--rule); transition: border-color .15s, color .15s;
-  }
-  .btn:hover { border-color: var(--accent); color: var(--accent-ink); }
+  .desc { font-size: 1.02rem; color: var(--text); margin-top: .15rem; }
+  .desc:empty { display: none; }
+  .links { display: flex; flex-wrap: wrap; gap: 1.1rem; font-size: .95rem; margin-top: .15rem; }
+  .btn { color: var(--muted); text-decoration: none; }
+  .btn::after { content: " ↗"; font-size: .85em; }
+  .btn:hover { color: var(--accent); }
+  .tags { display: flex; flex-wrap: wrap; gap: .25rem .9rem; font-size: .85rem; }
+  .tag { color: var(--muted); cursor: pointer; opacity: .8; }
+  .tag::before { content: "#"; opacity: .6; }
+  .tag:hover { color: var(--accent); opacity: 1; }
 
-  /* other publications */
   .pubs { list-style: none; margin: 0; padding: 0; }
-  .pub { display: grid; grid-template-columns: 11rem 1fr; gap: 1rem; padding: 1.05rem 0; border-bottom: 1px solid var(--rule); align-items: baseline; }
-  .pub[hidden] { display: none; }
-  .pub .venue { justify-self: start; }
-  .pub-title { font-weight: 500; text-decoration: none; }
-  .pub-title:hover { text-decoration: underline; }
+  .pub { display: flex; flex-direction: column; gap: .2rem; padding: 1.1rem 0; border-bottom: 1px solid var(--rule); }
+  .pub:last-child { border-bottom: 0; }
+  .pub > div { display: flex; flex-direction: column; gap: .2rem; }
+  .pub-title { font-weight: 600; color: var(--ink); text-decoration: none; font-size: 1.08rem; line-height: 1.35; }
+  .pub-title:hover { text-decoration: underline; text-decoration-color: var(--accent); }
+  .pub .tags { margin-top: .1rem; }
 
-  /* education */
-  .edu { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
-  .edu div { padding: 1.4rem; border: 1px solid var(--rule); border-radius: 14px; background: var(--surface); }
-  .edu h4 { font-size: 1.6rem; }
-  .edu p { color: var(--muted); margin-top: .3rem; }
-  footer { margin-top: 5rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); color: var(--muted); font-size: .85rem; display: flex; justify-content: space-between; }
+  .edu { display: flex; flex-direction: column; gap: .9rem; }
+  .edu h4 { font-size: 1.1rem; }
+  .edu p { color: var(--muted); font-size: 1rem; }
+  footer { margin-top: 5rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); color: var(--muted); font-size: .95rem; display: flex; justify-content: space-between; }
+  footer a { text-decoration: none; }
 
-  /* reveal */
-  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal { opacity: 0; transform: translateY(10px); transition: opacity .6s ease, transform .6s ease; }
   .reveal.in { opacity: 1; transform: none; }
 
-  /* lightbox */
-  dialog.lightbox { border: 0; padding: 0; margin: auto; max-width: min(96vw, 1200px); max-height: 92vh; background: transparent; overflow: visible; }
-  dialog.lightbox::backdrop { background: rgba(10, 10, 12, .86); backdrop-filter: blur(4px); }
-  dialog.lightbox img, dialog.lightbox video { display: block; max-width: min(96vw, 1200px); max-height: 86vh; border-radius: 10px; background: #fff; }
-  dialog.lightbox video { background: #000; }
-  dialog.lightbox p { color: #e9e6df; font-size: .85rem; text-align: center; margin-top: .6rem; }
-  .lightbox-close { position: absolute; top: -.25rem; right: 0; transform: translateY(-100%); background: none; border: 0; color: #e9e6df; font: inherit; font-size: .85rem; cursor: pointer; padding: .25rem 0; }
-
-  @media (max-width: 860px) {
-    .cards { grid-template-columns: 1fr; margin-left: 0; }
-    .group-head { grid-template-columns: 2.8rem 1fr; }
-  }
   @media (max-width: 640px) {
-    .chip { font-size: 1.3rem; }
-    .chips { gap: .1rem 1.3rem; }
     main { padding: 0 1rem 4rem; }
-    .bar nav { display: none; }
-    .hero { grid-template-columns: 1fr; gap: 2rem; padding-top: 2rem; }
-    .portrait { width: 8.5rem; height: 8.5rem; order: -1; }
+    .bar { justify-content: flex-start; gap: 1.2rem; }
+    .bar nav { gap: 1.2rem; font-size: .95rem; }
+    .hero { padding-top: 2rem; }
+    .portrait { width: 7.5rem; height: 7.5rem; }
+    h1 { font-size: 2.2rem; }
     .lede { font-size: 1.05rem; }
-    .pub { grid-template-columns: 1fr; gap: .4rem; }
-    .edu { grid-template-columns: 1fr; }
-    .sec-head { flex-direction: column; gap: .4rem; }
     footer { flex-direction: column; gap: .3rem; }
   }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .reveal { opacity: 1; transform: none; transition: none; }
-    .portrait::before { animation: none; }
-    .card, .media img, .social a { transition: none; }
   }
 </style>
 </head>
@@ -224,14 +148,15 @@
 <main>
   <div class="bar">
     <span class="serif" style="font-size:1.25rem">J. Guo</span>
-    <nav aria-label="Sections"><a href="#interests">Interests</a><a href="#work">Research</a><a href="#pubs">Publications</a><a href="#edu">Education</a></nav>
+    <nav aria-label="Sections"><a href="#work">Research</a><a href="#pubs">Publications</a><a href="#edu">Education</a></nav>
     <button class="theme-btn" id="theme-btn" type="button" aria-label="Toggle dark mode">◐</button>
   </div>
 
   <header class="hero">
-    <div>
-      <p class="eyebrow">PhD student · Princeton ECE</p>
-      <h1>Jiacheng <em>Guo</em></h1>
+    <div class="portrait"><img src="avatar.jpg" alt="Jiacheng Guo" width="240" height="240"></div>
+    <div style="display:flex;flex-direction:column;align-items:center">
+      <h1>Jiacheng Guo</h1>
+      <p class="eyebrow">PhD student, Electrical and Computer Engineering, Princeton University</p>
       <p class="lede">I study how agents <strong>learn from interaction</strong>, from reinforcement learning and LLM post-training to agents that <strong>run research loops and improve themselves</strong>, with applications in <strong>scientific discovery</strong> and <strong>finance</strong>. Advised by <a href="https://mwang.princeton.edu/">Mengdi Wang</a>.</p>
       <ul class="social">
         <li><a href="https://scholar.google.com/citations?user=-gNBIsYAAAAJ"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.84 3.95A7 7 0 0 1 12 10a7 7 0 0 1 7.16 3.45L24 9.5z"/></svg>Scholar</a></li>
@@ -241,24 +166,23 @@
         <li><a href="mailto:jg9904@princeton.edu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4h20a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm10 7.4L2.6 6h18.8zM2 8v10h20V8l-10 5.8z"/></svg>jg9904@princeton.edu</a></li>
       </ul>
     </div>
-    <div class="portrait"><img src="avatar.jpg" alt="Jiacheng Guo" width="240" height="240"></div>
   </header>
 
   <section class="sec" id="interests">
-    <div class="sec-head"><h2>Research interests</h2><p>Select a topic to filter the work below.</p></div>
+    <div class="sec-head"><h2>Research</h2><p>Filter by topic; a paper can belong to several.</p></div>
     <div class="chips" role="group" aria-label="Filter by research interest"><button class="chip is-on" type="button" data-topic="all" aria-pressed="true">All<sup>21</sup></button><button class="chip" type="button" data-topic="rl" aria-pressed="false">Reinforcement Learning<sup>6</sup></button><button class="chip" type="button" data-topic="agents" aria-pressed="false">Agents & Self-Improvement<sup>11</sup></button><button class="chip" type="button" data-topic="posttrain" aria-pressed="false">Post-Training & Alignment<sup>4</sup></button><button class="chip" type="button" data-topic="tts" aria-pressed="false">Test-Time Scaling & Reasoning<sup>4</sup></button><button class="chip" type="button" data-topic="bench" aria-pressed="false">Benchmarks & Data<sup>9</sup></button><button class="chip" type="button" data-topic="apps" aria-pressed="false">AI for Science & Finance<sup>4</sup></button><button class="chip" type="button" data-topic="theory" aria-pressed="false">Theory<sup>3</sup></button></div>
     <p class="filter-note" id="filter-note" aria-live="polite"></p>
   </section>
 
   <section class="sec" id="work">
-    <div class="sec-head"><h2>Selected research</h2><p>Grouped by theme</p></div>
+    <div class="sec-head"><h2>Selected work</h2></div>
     <section class="group" data-group><div class="group-head reveal"><span class="num">01</span><div><h3>Self-improving agents & agentic research</h3></div></div><div class="cards"><article class="card has-media reveal" data-tags="agents apps"><div class="card-body"><h4>AQuA: Recursively Self-Improving Quantitative Trading Research Agents</h4><p class="authors"><b>Jiacheng Guo</b>, Suozhi Huang, Yunlong Gao, Zihao Li, Jason Ge, Shushu Liang, Xu Kuang, Mengdi Wang</p><p class="desc">Designed a quantitative research agent that recursively improves factor discovery and predictive modeling through separate research loops.</p><div class="tags"><span class="tag">Agents & Self-Improvement</span><span class="tag">AI for Science & Finance</span></div><div class="links"><a class="btn" href="https://arxiv.org/abs/2608.12841">Paper</a><a class="btn" href="https://x.com/JiachengGu50887/status/2088336767267283069">X</a></div></div></article><article class="card has-media reveal" data-tags="agents rl bench"><div class="card-body"><span class="venue">NeurIPS 2026</span><h4>GenEnv: Difficulty-Aligned Co-Evolution Between LLM Agents and Environment Simulators</h4><p class="authors"><b>Jiacheng Guo</b>, Ling Yang, Peter Chen, Qixin Xiao, Yinjie Wang, Xinzhe Juan, Jiahao Qiu, Ke Shen, Mengdi Wang</p><p class="desc">Co-trained agents and environment simulators to generate tasks whose difficulty adapts to the agents&#x27; evolving capabilities.</p><div class="tags"><span class="tag">Agents & Self-Improvement</span><span class="tag">Reinforcement Learning</span><span class="tag">Benchmarks & Data</span></div><div class="links"><a class="btn" href="https://arxiv.org/abs/2512.19682">Paper</a></div></div></article><article class="card has-media reveal" data-tags="agents bench"><div class="card-body"><h4>Choruz</h4><p class="authors"><b>Jiacheng Guo</b>, Yunlong Gao, Suozhi Huang, Jason Ge</p><p class="desc">Built an agent workspace for Codex, Claude Code, and Muse that asynchronously turns user interaction traces into personalized benchmarks to adapt harnesses, reduce recurring errors, and support selective substitution with smaller models.</p><div class="tags"><span class="tag">Agents & Self-Improvement</span><span class="tag">Benchmarks & Data</span></div><div class="links"><a class="btn" href="https://github.com/inclusionAI/Choruz">GitHub</a><a class="btn" href="https://x.com/JiachengGu50887/status/2095656605752897708">X</a></div></div></article><article class="card has-media reveal" data-tags="agents"><div class="card-body"><h4>PanelWise</h4><p class="authors"><b>Jiacheng Guo</b>, Yunlong Gao</p><p class="desc">Built a configurable framework for agent collaboration through independent solution synthesis and stepwise coordination over shared task state.</p><div class="tags"><span class="tag">Agents & Self-Improvement</span></div><div class="links"><a class="btn" href="https://github.com/inclusionAI/PanelWise">GitHub</a><a class="btn" href="https://x.com/JiachengGu50887/status/2090902807687930262">X</a></div></div></article></div></section><section class="group" data-group><div class="group-head reveal"><span class="num">02</span><div><h3>RL & LLM post-training</h3></div></div><div class="cards"><article class="card has-media reveal" data-tags="rl posttrain"><div class="card-body"><span class="venue">Technical Blog</span><h4>Decoupled Score Centering for Asynchronous RL</h4><p class="desc">Decoupled rollout, proximal, and training policies to stabilize asynchronous LLM reinforcement learning under policy lag and training-inference mismatch.</p><div class="tags"><span class="tag">Reinforcement Learning</span><span class="tag">Post-Training & Alignment</span></div><div class="links"><a class="btn" href="https://gelatinous-expert-612.notion.site/Decoupled-Score-Centering-for-Asynchronous-RL-3eac33b0277d8011b366cb9be9c725f4">Article</a><a class="btn" href="https://x.com/JiachengGu50887/status/2107213660456399055">X</a></div></div></article><article class="card has-media reveal" data-tags="posttrain bench"><div class="card-body"><h4>On the Role of Preference Variance in Preference Optimization</h4><p class="authors"><b>Jiacheng Guo</b>, Zihao Li, Jiahao Qiu, Yue Wu, Mengdi Wang</p><p class="desc">Characterized how preference variance shapes optimization gradients and used this insight to guide preference-data selection.</p><div class="tags"><span class="tag">Post-Training & Alignment</span><span class="tag">Benchmarks & Data</span></div><div class="links"><a class="btn" href="https://arxiv.org/abs/2510.13022">Paper</a></div></div></article><article class="card has-media reveal" data-tags="tts"><div class="card-body"><span class="venue">Findings of EMNLP 2025</span><h4>Temporal Consistency for LLM Reasoning Process Error Identification</h4><p class="authors"><b>Jiacheng Guo</b>, Yue Wu, Jiahao Qiu, Kaixuan Huang, Xinzhe Juan, Ling Yang, Mengdi Wang</p><p class="desc">Introduced temporal consistency in LLMs&#x27; self-verification as a complementary signal for test-time scaling, using persistent agreement across self-checks to assess reasoning correctness.</p><div class="tags"><span class="tag">Test-Time Scaling & Reasoning</span></div><div class="links"><a class="btn" href="https://aclanthology.org/2025.findings-emnlp.1205/">Paper</a><a class="btn" href="https://github.com/jcguo123/Temporal-Consistency">Code</a></div></div></article></div></section><section class="group" data-group><div class="group-head reveal"><span class="num">03</span><div><h3>AI for finance & benchmarks</h3></div></div><div class="cards"><article class="card has-media reveal" data-tags="apps rl posttrain bench"><div class="card-body"><h4>Can Language Models Learn to Forecast Stock Prices</h4><p class="authors"><b>Jiacheng Guo</b>, Suozhi Huang, Shuzhen Li, et al.</p><p class="desc">Built an agentic sandbox for tool-based stock forecasting, used GPT to generate and filter training data within it, and applied SFT and RL to substantially improve return-magnitude prediction and moderately improve directional accuracy.</p><div class="tags"><span class="tag">AI for Science & Finance</span><span class="tag">Reinforcement Learning</span><span class="tag">Post-Training & Alignment</span><span class="tag">Benchmarks & Data</span></div><div class="links"><a class="btn" href="https://arxiv.org/abs/2609.36914">Paper</a><a class="btn" href="https://x.com/JiachengGu50887/status/2105489335860814266">X</a></div></div></article><article class="card has-media reveal" data-tags="bench apps agents"><div class="card-body"><h4>CryptoBench: A Dynamic Benchmark for Expert-Level Evaluation of LLM Agents in Cryptocurrency</h4><p class="authors"><b>Jiacheng Guo</b>, Suozhi Huang, Zixin Yao, et al.</p><p class="desc">Designed a continuously updated, expert-curated benchmark that disentangles information retrieval from predictive reasoning in cryptocurrency research.</p><div class="tags"><span class="tag">Benchmarks & Data</span><span class="tag">AI for Science & Finance</span><span class="tag">Agents & Self-Improvement</span></div><div class="links"><a class="btn" href="https://arxiv.org/abs/2512.00417">Paper</a></div></div></article></div></section><section class="group" data-group><div class="group-head reveal"><span class="num">04</span><div><h3>RL theory</h3></div></div><div class="cards"><article class="card has-media reveal" data-tags="rl theory"><div class="card-body"><span class="venue">ICLR 2024</span><h4>Sample-Efficient Learning of POMDPs with Multiple Observations In Hindsight</h4><p class="authors"><b>Jiacheng Guo</b>, Minshuo Chen, Huan Wang, Caiming Xiong, Mengdi Wang, Yu Bai</p><p class="desc">Introduced multiple observations in hindsight and developed sample-efficient learning algorithms for POMDPs requiring only distinguishable, rather than linearly independent, observation distributions.</p><div class="tags"><span class="tag">Reinforcement Learning</span><span class="tag">Theory</span></div><div class="links"><a class="btn" href="https://arxiv.org/abs/2307.02884">Paper</a></div></div></article><article class="card has-media reveal" data-tags="rl theory"><div class="card-body"><span class="venue">ICML 2023</span><h4>Provably Efficient Representation Learning with Tractable Planning in Low-Rank POMDP</h4><p class="authors"><b>Jiacheng Guo</b>, Zihao Li, Huazheng Wang, Mengdi Wang, Zhuoran Yang, Xuezhou Zhang</p><p class="desc">Developed algorithms that learn compact representations of observation histories for provably efficient exploration and tractable planning.</p><div class="tags"><span class="tag">Reinforcement Learning</span><span class="tag">Theory</span></div><div class="links"><a class="btn" href="https://proceedings.mlr.press/v202/guo23d.html">Paper</a></div></div></article></div></section>
   </section>
 
 
   <section class="sec" id="pubs" data-group>
-    <div class="sec-head"><h2>Other publications</h2><p>Collaborations</p></div>
-    <ul class="pubs"><li class="pub reveal" data-tags="bench agents"><span class="venue">ICLR 2026</span><div><a class="pub-title" href="https://arxiv.org/abs/2508.11987">FutureX: An Advanced Live Benchmark for LLM Agents in Future Prediction</a><p class="authors">Zhiyuan Zeng, Jiashuo Liu, …, <b>Jiacheng Guo</b>, et al.</p><div class="tags"><span class="tag">Benchmarks & Data</span><span class="tag">Agents & Self-Improvement</span></div></div></li><li class="pub reveal" data-tags="bench agents apps"><span class="venue">ICML 2026</span><div><a class="pub-title" href="https://arxiv.org/abs/2505.20246">On Path to Multimodal Historical Reasoning: HistBench and HistAgent</a><p class="authors">Jiahao Qiu, Fulian Xiao, …, <b>Jiacheng Guo</b>, et al.</p><div class="tags"><span class="tag">Benchmarks & Data</span><span class="tag">Agents & Self-Improvement</span><span class="tag">AI for Science & Finance</span></div></div></li><li class="pub reveal" data-tags="bench tts"><span class="venue">ICML 2025</span><div><a class="pub-title" href="https://arxiv.org/abs/2502.06453">MATH-Perturb: Benchmarking LLMs&#x27; Math Reasoning Abilities against Hard Perturbations</a><p class="authors">Kaixuan Huang, <b>Jiacheng Guo</b>, et al.</p><div class="tags"><span class="tag">Benchmarks & Data</span><span class="tag">Test-Time Scaling & Reasoning</span></div></div></li><li class="pub reveal" data-tags="posttrain tts"><span class="venue">Findings of EMNLP 2025</span><div><a class="pub-title" href="https://aclanthology.org/2025.findings-emnlp.1140/">TreeBoN: Enhancing Inference-Time Alignment with Speculative Tree-Search and Best-of-N Sampling</a><p class="authors">Jiahao Qiu, Yifu Lu, Yifan Zeng, <b>Jiacheng Guo</b>, et al.</p><div class="tags"><span class="tag">Post-Training & Alignment</span><span class="tag">Test-Time Scaling & Reasoning</span></div></div></li><li class="pub reveal" data-tags="rl theory"><span class="venue">ICML 2024</span><div><a class="pub-title" href="https://proceedings.mlr.press/v235/koppel24a.html">Information-Directed Pessimism for Offline Reinforcement Learning</a><p class="authors">Alec Koppel, Sujay Bhatt, <b>Jiacheng Guo</b>, Joe Eappen, Mengdi Wang, Sumitra Ganesh</p><div class="tags"><span class="tag">Reinforcement Learning</span><span class="tag">Theory</span></div></div></li><li class="pub reveal" data-tags="agents"><span class="venue is-pre">Preprint</span><div><a class="pub-title" href="https://arxiv.org/abs/2510.23601">Alita-G: Self-Evolving Generative Agent for Agent Generation</a><p class="authors">Jiahao Qiu, Xuan Qi, …, <b>Jiacheng Guo</b>, et al.</p><div class="tags"><span class="tag">Agents & Self-Improvement</span></div></div></li><li class="pub reveal" data-tags="agents"><span class="venue is-pre">Preprint</span><div><a class="pub-title" href="https://arxiv.org/abs/2505.20286">Alita: Generalist Agent Enabling Scalable Agentic Reasoning with Minimal Predefinition and Maximal Self-Evolution</a><p class="authors">Jiahao Qiu, Xuan Qi, …, <b>Jiacheng Guo</b>, et al.</p><div class="tags"><span class="tag">Agents & Self-Improvement</span></div></div></li><li class="pub reveal" data-tags="agents"><span class="venue is-pre">Preprint</span><div><a class="pub-title" href="https://arxiv.org/abs/2506.14728">AgentDistill: Training-Free Agent Distillation with Generalizable MCP Boxes</a><p class="authors">Jiahao Qiu, Xinzhe Juan, …, <b>Jiacheng Guo</b>, et al.</p><div class="tags"><span class="tag">Agents & Self-Improvement</span></div></div></li><li class="pub reveal" data-tags="bench agents"><span class="venue is-pre">Preprint</span><div><a class="pub-title" href="https://arxiv.org/abs/2601.12259">FutureX-Pro: Extending Future Prediction to High-Value Vertical Domains</a><p class="authors">Jiashuo Liu, Siyuan Chen, …, <b>Jiacheng Guo</b>, et al.</p><div class="tags"><span class="tag">Benchmarks & Data</span><span class="tag">Agents & Self-Improvement</span></div></div></li><li class="pub reveal" data-tags="tts"><span class="venue is-pre">Preprint</span><div><a class="pub-title" href="https://arxiv.org/abs/2607.13491">DeepLoop: Depth Scaling for Looped Transformers</a><p class="authors">Shuzhen Li, Yifan Zhang, <b>Jiacheng Guo</b>, Quanquan Gu, Mengdi Wang</p><div class="tags"><span class="tag">Test-Time Scaling & Reasoning</span></div></div></li></ul>
+    <div class="sec-head"><h2>Other publications</h2></div>
+    <ul class="pubs"><li class="pub reveal" data-tags="bench agents"><div><a class="pub-title" href="https://arxiv.org/abs/2508.11987">FutureX: An Advanced Live Benchmark for LLM Agents in Future Prediction</a><p class="authors">Zhiyuan Zeng, Jiashuo Liu, …, <b>Jiacheng Guo</b>, et al.</p><span class="venue">ICLR 2026</span><div class="tags"><span class="tag">Benchmarks & Data</span><span class="tag">Agents & Self-Improvement</span></div></div></li><li class="pub reveal" data-tags="bench agents apps"><div><a class="pub-title" href="https://arxiv.org/abs/2505.20246">On Path to Multimodal Historical Reasoning: HistBench and HistAgent</a><p class="authors">Jiahao Qiu, Fulian Xiao, …, <b>Jiacheng Guo</b>, et al.</p><span class="venue">ICML 2026</span><div class="tags"><span class="tag">Benchmarks & Data</span><span class="tag">Agents & Self-Improvement</span><span class="tag">AI for Science & Finance</span></div></div></li><li class="pub reveal" data-tags="bench tts"><div><a class="pub-title" href="https://arxiv.org/abs/2502.06453">MATH-Perturb: Benchmarking LLMs&#x27; Math Reasoning Abilities against Hard Perturbations</a><p class="authors">Kaixuan Huang, <b>Jiacheng Guo</b>, et al.</p><span class="venue">ICML 2025</span><div class="tags"><span class="tag">Benchmarks & Data</span><span class="tag">Test-Time Scaling & Reasoning</span></div></div></li><li class="pub reveal" data-tags="posttrain tts"><div><a class="pub-title" href="https://aclanthology.org/2025.findings-emnlp.1140/">TreeBoN: Enhancing Inference-Time Alignment with Speculative Tree-Search and Best-of-N Sampling</a><p class="authors">Jiahao Qiu, Yifu Lu, Yifan Zeng, <b>Jiacheng Guo</b>, et al.</p><span class="venue">Findings of EMNLP 2025</span><div class="tags"><span class="tag">Post-Training & Alignment</span><span class="tag">Test-Time Scaling & Reasoning</span></div></div></li><li class="pub reveal" data-tags="rl theory"><div><a class="pub-title" href="https://proceedings.mlr.press/v235/koppel24a.html">Information-Directed Pessimism for Offline Reinforcement Learning</a><p class="authors">Alec Koppel, Sujay Bhatt, <b>Jiacheng Guo</b>, Joe Eappen, Mengdi Wang, Sumitra Ganesh</p><span class="venue">ICML 2024</span><div class="tags"><span class="tag">Reinforcement Learning</span><span class="tag">Theory</span></div></div></li><li class="pub reveal" data-tags="agents"><div><a class="pub-title" href="https://arxiv.org/abs/2510.23601">Alita-G: Self-Evolving Generative Agent for Agent Generation</a><p class="authors">Jiahao Qiu, Xuan Qi, …, <b>Jiacheng Guo</b>, et al.</p><span class="venue is-pre">Preprint</span><div class="tags"><span class="tag">Agents & Self-Improvement</span></div></div></li><li class="pub reveal" data-tags="agents"><div><a class="pub-title" href="https://arxiv.org/abs/2505.20286">Alita: Generalist Agent Enabling Scalable Agentic Reasoning with Minimal Predefinition and Maximal Self-Evolution</a><p class="authors">Jiahao Qiu, Xuan Qi, …, <b>Jiacheng Guo</b>, et al.</p><span class="venue is-pre">Preprint</span><div class="tags"><span class="tag">Agents & Self-Improvement</span></div></div></li><li class="pub reveal" data-tags="agents"><div><a class="pub-title" href="https://arxiv.org/abs/2506.14728">AgentDistill: Training-Free Agent Distillation with Generalizable MCP Boxes</a><p class="authors">Jiahao Qiu, Xinzhe Juan, …, <b>Jiacheng Guo</b>, et al.</p><span class="venue is-pre">Preprint</span><div class="tags"><span class="tag">Agents & Self-Improvement</span></div></div></li><li class="pub reveal" data-tags="bench agents"><div><a class="pub-title" href="https://arxiv.org/abs/2601.12259">FutureX-Pro: Extending Future Prediction to High-Value Vertical Domains</a><p class="authors">Jiashuo Liu, Siyuan Chen, …, <b>Jiacheng Guo</b>, et al.</p><span class="venue is-pre">Preprint</span><div class="tags"><span class="tag">Benchmarks & Data</span><span class="tag">Agents & Self-Improvement</span></div></div></li><li class="pub reveal" data-tags="tts"><div><a class="pub-title" href="https://arxiv.org/abs/2607.13491">DeepLoop: Depth Scaling for Looped Transformers</a><p class="authors">Shuzhen Li, Yifan Zhang, <b>Jiacheng Guo</b>, Quanquan Gu, Mengdi Wang</p><span class="venue is-pre">Preprint</span><div class="tags"><span class="tag">Test-Time Scaling & Reasoning</span></div></div></li></ul>
   </section>
 
   <section class="sec" id="edu">
